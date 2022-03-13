@@ -1,10 +1,10 @@
 import './App.css';
 
+import Main from './components/index.js';
+
 function App() {
   return (
-    <div className="App">
-      <h1>Welcome to BusiCard</h1>
-    </div>
+    <Main/>
   );
 }
 

@@ -1,0 +1,220 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+*{
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Poppins', sans-serif;
+}
+
+:root {
+    --theme-color-1: #ffffff;
+    --theme-color-2: #0869C8;
+}
+
+.flex-center-center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--theme-color-1);
+}
+
+
+/***********************************************navbar styles start************************************************/
+
+.logo, .nav-lists, .action-lists{
+    /* border: 2px solid var(--theme-color-1); */
+}
+
+.logo div img{
+    width: 25px;
+    height: 25px;
+}
+
+
+.main-nav{
+    display: grid;
+    grid-template-rows: 80px;
+    grid-template-columns: 1fr 2fr 1fr;
+    align-items: center;
+    font-style: normal;
+    font-size: 18px;
+    line-height: 25px;
+    color: var(--theme-color-1);
+    position: absolute;
+    width: 100%;
+}
+
+.logo{
+    grid-column: 1/2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.logo div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo div span{
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 52px;
+    letter-spacing: 0.02em;
+    color: var(--theme-color-1);
+}
+
+.logo div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.nav-lists{
+    grid-column: 2/3;
+}
+
+.nav-lists ul, .action-lists ul{
+    display: flex;
+    justify-content: center;
+}
+
+.nav-lists ul li{
+    list-style: none;
+    margin-left: 30px;
+}
+
+.nav-lists ul li button{
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 25px;
+    color: var(--theme-color-1);
+    background: transparent;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.nav-lists-li-active{
+    border-top:none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 2px solid var(--theme-color-1);
+}
+
+.nav-lists-li-inactive{
+    border:none;
+}
+
+.action-lists{
+    grid-column: 3/4;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.action-lists ul{
+    grid-column: 3/4;
+}
+
+.action-lists div{
+    list-style: none;
+    margin-left: 10px;
+}
+
+.action-btn{
+    color:var(--theme-color-1);
+    background: transparent;
+    border:none;
+    cursor: pointer;
+}
+
+.action-txt{
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    color: var(--theme-color-1);
+}
+
+.action-btn-border{
+    padding: 5px 25px;
+    border-radius: 5px;
+    background: transparent;
+    border:1px solid var(--theme-color-1);
+    color:var(--theme-color-1);
+    width: 125px;
+    cursor: pointer;
+}
+
+.action-btn-bg{
+    padding: 5px 25px;
+    background-color: var(--theme-color-2);
+    border-radius: 5px;
+    border:1px solid var(--theme-color-2);
+    color:var(--theme-color-1);
+    width: 125px;
+    cursor: pointer;
+}
+
+/***********************************************navbar styles end************************************************/
+
+
+/***********************************************loader styles start************************************************/
+
+.loader{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;    
+    color: var(--theme-color-2);
+    font-size: 25px;
+    opacity: 0.6;
+
+}
+
+.loader-img{
+    width: 100px;
+    height: 100px;
+}
+
+.loader-img img{
+    width: 100%;
+    height: 100%;
+}
+
+/***********************************************loader styles end************************************************/
+
+
+/***********************************************home styles start************************************************/
+
+
+.home-bg{
+    width: 100%;
+    height: 100vh;
+    background-image: url('../images/home_backgroud.jpg');
+    background-repeat: no-repeat;
+    background-size: 100% 100vh;
+
+}
+
+/***********************************************home styles end************************************************/
+
+
+/***********************************************sales styles start************************************************/
+
+.sales-bg{
+    width: 100%;
+    height: 100vh;
+    background-image: url('../images/sales_head_image.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100vh;
+
+}
+
+/***********************************************sales styles end************************************************/
