@@ -9,6 +9,7 @@
 :root {
     --theme-color-1: #ffffff;
     --theme-color-2: #0869C8;
+    --theme-color-3:#75B9B1;
 }
 
 .flex-center-center{
@@ -16,6 +17,18 @@
     justify-content: center;
     align-items: center;
     color: var(--theme-color-1);
+}
+
+.ls0-12{
+    letter-spacing: 0.12em;
+}
+
+.mt-100{
+    margin-top: 100px;
+}
+
+.pl-10{
+    padding-left: 10px;
 }
 
 
@@ -218,3 +231,97 @@
 }
 
 /***********************************************sales styles end************************************************/
+
+
+/***********************************************home styles start************************************************/
+
+*{
+    color: var(--theme-color-1);
+    margin: 0;
+    font-style: medium;
+}
+.head{
+    background-size:auto;
+    background-image: url('../../assets/images/headerbg.jpg');
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 100vh;
+}
+.header-hero{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.hero-img{
+    height: 1rem;
+    width: auto;
+}
+.nav-bar{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.nav-list{
+    display: flex;
+    width: 125%;
+    justify-content: space-between;
+}
+.nav-items{
+    list-style-type: none;
+}
+.main-details{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width:50%;
+    height: 50vh;
+}
+.head-details{
+    display: flex;
+}
+.main-heading{
+       background-color: var(--theme-color-3); 
+}
+.text-to-righ{
+    float: right;
+    width: 60%;
+    margin-bottom: 15px;
+}
+
+.text-to-right{
+    float: right;
+}
+.main-heading-text{
+    line-height: 60px;
+    font-size:40px;
+} 
+.sub-heading{
+    font-size: 1.25rem;
+}
+.explore-div{
+   margin: 0 auto; 
+}
+.vector-img{
+    margin:auto;
+}
+.active{
+    padding-bottom: 5px;
+    border-bottom: 2.5px solid white;
+}
+a{
+    text-decoration: none;
+}
+.links{
+    list-style-type: none;
+    display: flex;
+    font-weight: 900;
+}
+.primary-link{
+    padding: 1rem 0.75rem;
+    background-color: var(--theme-color-2);
+    border-radius: 10px;
+    margin-left: 10px;
+}
+
+/***********************************************home styles end************************************************/

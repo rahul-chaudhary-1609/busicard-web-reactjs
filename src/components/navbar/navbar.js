@@ -94,7 +94,7 @@ const Navbar=()=>{
                             <span>BusiCard</span>
                         </div>
                         <div>
-                            <img src={require("../../assets/images/logo_icon1.png")} alt="logo"/>
+                            <img src={require("../../assets/images/Group 135295.png")} alt="logo"/>
                         </div>
                 </div>
                 <div className="nav-lists">
