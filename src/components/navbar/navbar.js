@@ -14,31 +14,31 @@ const Navbar=()=>{
             id:1,
             title:"Home",
             path:"/home",
-            active:true,
+            active:pathName==="/home"?true:false,
         },
         {
             id:2,
             title:"About Us",
             path:"/aboutus",
-            active:false,
+            active:pathName==="/aboutus"?true:false,
         },
         {
             id:3,
             title:"Category",
             path:"/category",
-            active:false,
+            active:pathName==="/category"?true:false,
         },
         {
             id:4,
             title:"Contact Us",
             path:"/contactus",
-            active:false,
+            active:pathName==="/contactus"?true:false,
         },
         {
             id:5,
             title:"Pricing",
             path:"/pricing",
-            active:false,
+            active:pathName==="/pricing"?true:false,
         }
     ])
     
@@ -94,7 +94,7 @@ const Navbar=()=>{
                             <span>BusiCard</span>
                         </div>
                         <div>
-                            <img src={require("../../assets/images/Group 135295.png")} alt="logo"/>
+                            <img src={require("../../assets/images/logo_icon.png")} alt="logo"/>
                         </div>
                 </div>
                 <div className="nav-lists">

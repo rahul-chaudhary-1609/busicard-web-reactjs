@@ -3,7 +3,7 @@ import * as React from "react";
 
 const AboutUs=()=>{
     return (
-        <div className="home-bg flex-center-center">
+        <div className="home-bg flex-row-center-center">
             <div>
                 <h1>Welcome to About Us</h1>
             </div>

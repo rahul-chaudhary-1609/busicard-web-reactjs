@@ -11,7 +11,7 @@ const Home=()=>{
         <header className="head">
             <div className="head-details  mt-100">
                 <div className="main-details">
-                    <h1 className="main-heading">
+                    <h1 className="main-heading pr-10">
                         <p className="main-heading-text text-to-right"> Digital Business Cards </p>
                     </h1>
                     <p className="sub-heading"> <span className="text-to-right ls0-12"> THE NEXT GENERATION OF NETWORKING </span></p>
@@ -28,7 +28,7 @@ const Home=()=>{
                 </div>
 
                 <div className="vector-img">
-                    <img src={require('../../assets/images/Group 135299.png')} alt=""/>
+                    <img src={require('../../assets/images/home_vector_img.png')} alt=""/>
                 </div>
             </div>
             <div className="explore-div">
