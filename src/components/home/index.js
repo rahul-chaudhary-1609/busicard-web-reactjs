@@ -5,7 +5,7 @@ import Footer from "./footer";
 
 
 
-const Main =()=>{
+const HomeMain =()=>{
     return(
         <>
             <Home/>
@@ -16,4 +16,4 @@ const Main =()=>{
 }
 
 
-export default Main;
+export default HomeMain;

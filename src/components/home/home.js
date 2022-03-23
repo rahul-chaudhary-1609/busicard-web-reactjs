@@ -35,7 +35,7 @@ const Home=()=>{
                 </div>
                 <div className="home-bottom-div">
                     <div className="home-bottom-part-1">
-                        <a href="/"> EXPLORE THE POSSIBILITIES</a>
+                        <a href="#landing-main"> EXPLORE THE POSSIBILITIES</a>
                     </div>
                     <div  className="home-bottom-part-2">
                         

@@ -3,12 +3,14 @@ import { Switch,Route } from "react-router-dom";
 import ProtectedRoutes from "./protectedRoutes.js";
 import Home from "../home/index.js";
 
-const Registraion=React.lazy(()=>import('../onbording/registration/registration.js'))
+const Registraion=React.lazy(()=>import('../onbording/registration/index.js'))
 const Login=React.lazy(()=>import('../onbording/login/login.js'))
 const AboutUs=React.lazy(()=>import('../aboutUs/aboutUs.js'))
 const Sales=React.lazy(()=>import('../sales/sales.js'))
 const SmallBusiness=React.lazy(()=>import('../smallBusiness/smallBusiness.js'))
 const Recruiting=React.lazy(()=>import('../recruiting/recruiting.js'))
+const TermsAndConditions=React.lazy(()=>import('../termsAndConditions/termsAndConditions.js'))
+const PrivacyPolicy=React.lazy(()=>import('../privacyPolicy/privacyPolicy.js'))
 const UnderDevelopment=React.lazy(()=>import('../underDevelopment.js'))
 const ErrorPage=React.lazy(()=>import('../errorPage.js'))
 
@@ -26,6 +28,8 @@ const Routes=()=>{
             <ProtectedRoutes path="/sales" component={Sales}/>
             <ProtectedRoutes path="/smallbusiness" component={SmallBusiness}/>
             <ProtectedRoutes path="/recruiting" component={Recruiting}/>
+            <ProtectedRoutes path="/tnc" component={TermsAndConditions}/>
+            <ProtectedRoutes path="/privacypolicy" component={PrivacyPolicy}/>
             <Route component={ErrorPage}/>
         </Switch>
     )

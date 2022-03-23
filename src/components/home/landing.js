@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const LandingPage = () => {
   return (
-    <div className="landing-main-div">
+    <div id="landing-main" className="landing-main-div">
       <div className="landing-subdiv-1">
         <div className="ls-1-horizontal-line">
           <hr></hr>
