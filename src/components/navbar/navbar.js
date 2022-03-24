@@ -1,14 +1,20 @@
 import * as React from "react";
 import { useHistory,useLocation,useParams } from 'react-router-dom';
+import { useSelector, useDispatch } from "react-redux";
+import { Popover } from 'react-tiny-popover';
+import { logout } from "../redux/actions/index.js";
 
 
 const Navbar=()=>{
+    const store=useSelector(store=>store.authReducer);
+    const dispatch=useDispatch();
 
     const history = useHistory();
     const location=useLocation();
     const pathName=location.pathname;
-    const params=useParams();
-    console.log("location=====>",history,location,params)
+
+    const [isPopoverOpen,setIsPopoverOpen]=React.useState(false);
+
     const [navList,setNavList]=React.useState([
         {
             id:1,
@@ -85,6 +91,24 @@ const Navbar=()=>{
         setNavList(currentNav);
         history.push(item.path);
     }
+
+    const handleLogout=()=>{
+        dispatch(logout({user:{}}))
+        history.push("/login")
+    }
+
+    const UserPopoverUI=()=>{
+        return(
+            <div className="profile-popover-main">
+                <div className="pp-button-div-1">
+                    <a href="#">User Management</a>
+                </div>
+                <div className="pp-button-div-2">
+                    <a href="#" onClick={handleLogout}>Logout</a>
+                </div>
+            </div>
+        )
+    }
     
     return (
         <>
@@ -113,31 +137,54 @@ const Navbar=()=>{
                         })}
                     </ul>
                 </div>
-                <div className="action-lists">
-                        {actionList.filter(item=>item.visible).map((item,index)=>{
-                            return(
-                                <div key={index}>
-                                    {
-                                        item.path?(
-                                            <button
-                                                className={item.class}
-                                                onClick={()=>handleActionClick(item,index)}
-                                            >
-                                                {item.title}
-                                            </button>
-                                        ):(
-                                            <span className={item.class}>
-                                                {item.title}
-                                            </span>
-                                        )
-                                    }
+               { !store.isAuth?
+                    <div className="action-lists">
+                            {actionList.filter(item=>item.visible).map((item,index)=>{
+                                return(
+                                    <div key={index}>
+                                        {
+                                            item.path?(
+                                                <button
+                                                    className={item.class}
+                                                    onClick={()=>handleActionClick(item,index)}
+                                                >
+                                                    {item.title}
+                                                </button>
+                                            ):(
+                                                <span className={item.class}>
+                                                    {item.title}
+                                                </span>
+                                            )
+                                        }
+                                    </div>
+                                )
+                            })}
+                    </div>:
+
+                    <div className="action-lists">
+                            
+                        <div>
+                            {store.user.name}
+                        </div>
+                        <Popover
+                            isOpen={isPopoverOpen}
+                            positions={['top', 'bottom', 'left', 'right']} // preferred positions by priority
+                            content={< UserPopoverUI/>}
+                            >
+                                <div className="profile-div" onClick={() => {
+                                    console.log("Popoverjjikn")
+                                    setIsPopoverOpen(!isPopoverOpen);
+                                }}>
+                                    <img src={store?.user?.profile_pic_url || require('../../assets/images/profile_avtar.jpg')} alt=""/>
                                 </div>
-                            )
-                        })}
-                </div>
+                            </Popover>
+                    </div>
+                }
             </nav>
         </>
     )
 }
+
+
 
 export default Navbar;

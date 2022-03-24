@@ -4,6 +4,8 @@ import '../assets/css/bootstrap.css';
 import "../assets/css/styles.css"
 import Routes from "./routes/routes.js";
 import Loader from "./utils/loader.js";
+import CustomToast from "./utils/customToast.js";
+
 
 
 
