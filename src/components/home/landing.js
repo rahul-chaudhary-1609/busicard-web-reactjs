@@ -34,7 +34,7 @@ const LandingPage = () => {
         </div>
         <div className="ls-1-card-2">
           <div>
-            <Link className="custom-link" to="/smallbusiness">SMALL BUSINESS</Link>
+            <Link className="custom-link" to="/small-business">SMALL BUSINESS</Link>
           </div> 
         </div>
         <div className="ls-1-card-3">

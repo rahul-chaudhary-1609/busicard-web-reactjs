@@ -1,14 +1,12 @@
 import * as React from "react";
 import { useHistory,useLocation } from 'react-router-dom';
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { Popover } from 'react-tiny-popover';
-import { logout } from "../redux/actions/index.js";
 import CustomToast from "../utils/customToast";
 import { toastType } from "../../constants";
 
 const Navbar=()=>{
     const store=useSelector(store=>store.authReducer);
-    const dispatch=useDispatch();
 
     const history = useHistory();
     const location=useLocation();
@@ -31,7 +29,7 @@ const Navbar=()=>{
         {
             id:2,
             title:"About Us",
-            path:"/aboutus",
+            path:"/about-us",
             active:pathName==="/aboutus"?true:false,
         },
         {
@@ -43,7 +41,7 @@ const Navbar=()=>{
         {
             id:4,
             title:"Contact Us",
-            path:"/contactus",
+            path:"/contact-us",
             active:pathName==="/contactus"?true:false,
         },
         {
@@ -99,7 +97,6 @@ const Navbar=()=>{
     }
 
     const handleLogout=()=>{
-        dispatch(logout({user:{}}))
         setIsPopoverOpen(!isPopoverOpen)
         setInfo({
             ...info,
@@ -107,7 +104,6 @@ const Navbar=()=>{
             message:"Logged out.",
             type:toastType.info,               
         })
-        history.push("/login")
     }
 
     const UserPopoverUI=()=>{
@@ -126,7 +122,7 @@ const Navbar=()=>{
     return (
         <>
             <CustomToast info={info}/>
-            <nav className="main-nav">
+            <nav id="main-nav-id" className="main-nav">
                 <div className="logo">
                         <div>
                             <span>BusiCard</span>

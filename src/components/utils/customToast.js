@@ -13,9 +13,7 @@ const CustomToast=(props)=>{
               break;
 
             case toastType.success:
-              toast.success(props.info.message,{
-                position: "top-right",
-              });
+              toast.success(props.info.message);
               break;
 
             case toastType.warning:
@@ -23,9 +21,7 @@ const CustomToast=(props)=>{
               break;
 
             case toastType.error:
-              toast.error(props.info.message,{
-                position: "bottom-right",
-              });
+              toast.error(props.info.message);
               break;
 
             default:

@@ -8,13 +8,13 @@ const Footer=()=>{
             <div className="footer-left-space"></div>
             <div className="footer-card-1">
                 <div>
-                    <Link className="footer-card-1-link" to="/contactus">Contact Us</Link>
+                    <Link className="footer-card-1-link" to="/contact-us">Contact Us</Link>
                 </div>
                 <div>
                     <Link className="footer-card-1-link" to="/tnc">Terms and Conditions</Link>
                 </div>
                 <div>
-                    <Link className="footer-card-1-link" to="/privacypolicy">Privacy Policies</Link>
+                    <Link className="footer-card-1-link" to="/privacy-policy">Privacy Policies</Link>
                 </div>
             </div>
             <div className="footer-card-2">

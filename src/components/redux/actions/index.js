@@ -9,9 +9,8 @@ export const login=(payload)=>{
 }
 
 
-export const logout=(payload)=>{
+export const logout=()=>{
     return {
         type:actions.LOGGED_OUT,
-        payload,
     }
 }

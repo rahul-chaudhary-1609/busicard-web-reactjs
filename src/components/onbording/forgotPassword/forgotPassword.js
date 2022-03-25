@@ -1,17 +1,16 @@
 import * as React from "react";
 import { apiPostRequest } from "../../../api";
 import { apiConstants, toastType } from "../../../constants";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector} from "react-redux";
 import { useHistory } from "react-router-dom";
 import CustomToast from "../../utils/customToast";
-import { login } from "../../redux/actions";
 import CustomErrorHandler from "../../utils/customErrorHandler";
 
-const Login=()=>{
+
+const ForgotPasswrod=()=>{
 
     const store=useSelector(store=>store.authReducer);
     const history=useHistory();
-    const dispatch=useDispatch();
 
     if(store.isAuth){
         history.push("/home")
@@ -19,7 +18,6 @@ const Login=()=>{
 
     const [user,setUser]=React.useState({
         email:"",
-        password:"",
     })
 
     const [loading, setLoading]=React.useState(false);
@@ -36,15 +34,14 @@ const Login=()=>{
 
 
 
-    const handleLogin=(e)=>{
+    const handleSend=(e)=>{
         e.preventDefault();
         setLoading(true);
         console.log("user",user)
         let data={
-            endPoint:apiConstants.signIn,
+            endPoint:apiConstants.forgotPassword,
             body:{
-                username:user.email,
-                password:user.password,
+                email:user.email,
             }
         }
 
@@ -54,11 +51,6 @@ const Login=()=>{
         .then((response)=>{
             console.log("Response",response)
             setLoading(false);
-            let payload={
-                user:{
-                    ...response.body.data
-                }
-            }
 
             setInfo({
                 ...info,
@@ -67,9 +59,6 @@ const Login=()=>{
                 type:toastType.success,               
             })
 
-            dispatch(login(payload))
-
-            history.push("/home")
         })
         .catch((error)=>{
             console.error("Error==>",error)
@@ -89,11 +78,11 @@ const Login=()=>{
                 </div>
                 <div className="login-form-div mt-80">
                         <div>
-                            <h2>Hello Again!</h2>
-                            <p>Welcome back. Enter your credentials</p>
+                            <h2>Forget Passwrod!</h2>
+                            <p>Enter your email to receive reset password link</p>
                         </div>
                         <div>
-                            <form action="#" className="login-form" autoComplete="nope" onSubmit={handleLogin}>
+                            <form action="#" className="login-form" autoComplete="nope" onSubmit={handleSend}>
                                 <div className="input-group mb-15">
                                     <input id="email" value={user.email} onChange={handleInputChange} type="text" className="form-control border-right-0 custom-input-1" placeholder="Email address" autoComplete="nope" required/>
                                     <span className="input-group-append bg-white border-left-0">
@@ -102,19 +91,8 @@ const Login=()=>{
                                         </span>
                                     </span>
                                 </div>
-                                <div className="input-group mb-15">
-                                    <input id="password" value={user.password} onChange={handleInputChange}  type="password" className="form-control border-right-0 custom-input-1" placeholder="password" autoComplete="nope" required/>
-                                    <span className="input-group-append bg-white border-left-0">
-                                        <span className="input-group-text bg-transparent">
-                                            <i className="icon"><img className="form-input-icon" src={require("../../../assets/images/password_icon.png")} alt=""/></i>
-                                        </span>
-                                    </span>
-                                </div>
-                                <div className="forgot-pwd-div">
-                                    <a href="/forgot-password">Forgot password?</a>
-                                </div>
                                 <div className="input-group">
-                                    <button disabled={loading} type="submit" className="action-btn-bg">LOGIN</button>
+                                    <button disabled={loading} type="submit" className="action-btn-bg">SEND</button>
                                 </div>
                             </form>
                         </div>
@@ -124,4 +102,4 @@ const Login=()=>{
     )
 }
 
-export default Login;
+export default ForgotPasswrod;

@@ -1,10 +1,12 @@
 import * as React from "react";
 import { apiPostRequest } from "../../../api";
-import { apiConstants, toastType } from "../../../constants";
+import { apiConstants, customTheme, toastType } from "../../../constants";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import CustomToast from "../../utils/customToast";
 import { login } from "../../redux/actions";
+import Pricing from "../../pricing/pricing.js"
+import CustomErrorHandler from "../../utils/customErrorHandler";
 
 
 
@@ -31,6 +33,20 @@ const Registraion=()=>{
         show:0,
         message:"",
         type:toastType.info
+    })
+
+    React.useEffect(()=>{
+        let pricingElement=document.getElementById("pricing-main-div");
+        let pricingHeadElement=document.getElementById("pricing-main-heading");
+        let pricingHeadTextElement=document.getElementById("pricing-main-text");
+        pricingElement.classList.remove('home-bg')
+        pricingHeadElement.style.color=customTheme.colors.theme_color_2;
+        pricingHeadTextElement.style.color=customTheme.colors.theme_color_4;
+        return ()=>{
+            pricingElement.classList.add('home-bg')
+            pricingHeadElement.style.color=customTheme.colors.theme_color_1;
+            pricingHeadTextElement.style.color=customTheme.colors.theme_color_1;
+        }
     })
 
     const handleInputChange=(e)=>{
@@ -72,6 +88,7 @@ const Registraion=()=>{
         e.preventDefault();
         setLoading(true);
         if(!validateData()){
+            setLoading(false);
             return;
         }
         console.log("user",user)
@@ -114,27 +131,13 @@ const Registraion=()=>{
         .catch((error)=>{
             console.error("Error==>",error)
             setLoading(false);
-            if(error?.message){
-                setInfo({
-                    ...info,
-                    show:1,
-                    message:error.message,
-                    type:toastType.error,               
-                })
-            }else{
-                setInfo({
-                    ...info,
-                    show:1,
-                    message:"Something went wrong",
-                    type:toastType.error,               
-                })
-            }
+            CustomErrorHandler(error,history);
         })
     }
     
 
 
-    return (
+    return (<>
         <div className="home-bg">
             <CustomToast info={info}/>
             <div className="register-main">
@@ -206,6 +209,8 @@ const Registraion=()=>{
                 </div>
             </div>
         </div>
+        <Pricing/> 
+        </>
     )
 }
 
