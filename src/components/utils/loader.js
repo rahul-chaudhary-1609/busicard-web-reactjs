@@ -3,9 +3,9 @@ import * as React from "react";
 
 const Loader=()=>{
     return (
-        <div className="home-bg loader">
+        <div className="loader">
             <div className="loader-img">
-                <img src={require("../../assets/images/logo_icon.png")} alg="loading..."/>
+                <img src={require("../../assets/images/logo_icon.png")} alt="loading..."/>
             </div>
             <div>
                 Loading...

@@ -30,7 +30,7 @@ const Registraion=()=>{
     const [info,setInfo]=React.useState({
         show:0,
         message:"",
-        type:"info"
+        type:toastType.info
     })
 
     const handleInputChange=(e)=>{
@@ -109,9 +109,7 @@ const Registraion=()=>{
                 type:toastType.success,               
             })
 
-            setTimeout(()=>{
-                history.push("/home")
-            },2000)
+            history.push("/home")
         })
         .catch((error)=>{
             console.error("Error==>",error)

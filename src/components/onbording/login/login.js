@@ -25,7 +25,7 @@ const Login=()=>{
     const [info,setInfo]=React.useState({
         show:0,
         message:"",
-        type:"info"
+        type:toastType.info
     })
 
     const handleInputChange=(e)=>{
@@ -59,8 +59,6 @@ const Login=()=>{
                 }
             }
 
-            dispatch(login(payload))
-
             setInfo({
                 ...info,
                 show:1,
@@ -68,9 +66,9 @@ const Login=()=>{
                 type:toastType.success,               
             })
 
-            setTimeout(()=>{
-                history.push("/home")
-            },5000)
+            dispatch(login(payload))
+
+            history.push("/home")
         })
         .catch((error)=>{
             console.error("Error==>",error)

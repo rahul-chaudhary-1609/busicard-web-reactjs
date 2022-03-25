@@ -12,6 +12,8 @@ const Recruiting=React.lazy(()=>import('../recruiting/recruiting.js'))
 const TermsAndConditions=React.lazy(()=>import('../termsAndConditions/termsAndConditions.js'))
 const PrivacyPolicy=React.lazy(()=>import('../privacyPolicy/privacyPolicy.js'))
 const Pricing=React.lazy(()=>import('../pricing/pricing.js'))
+const UserManagemnt=React.lazy(()=>import('../userManagement/userManagement.js'))
+const Logout=React.lazy(()=>import('../logout/logout.js'))
 const UnderDevelopment=React.lazy(()=>import('../underDevelopment.js'))
 const ErrorPage=React.lazy(()=>import('../errorPage.js'))
 
@@ -31,6 +33,8 @@ const Routes=()=>{
             <ProtectedRoutes path="/recruiting" component={Recruiting}/>
             <ProtectedRoutes path="/tnc" component={TermsAndConditions}/>
             <ProtectedRoutes path="/privacypolicy" component={PrivacyPolicy}/>
+            <ProtectedRoutes path="/usermanagement" component={UserManagemnt}/>
+            <ProtectedRoutes path="/logout" component={Logout}/>
             <Route component={ErrorPage}/>
         </Switch>
     )

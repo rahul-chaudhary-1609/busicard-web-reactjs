@@ -1,9 +1,10 @@
 import * as React from "react";
-import { useHistory,useLocation,useParams } from 'react-router-dom';
+import { useHistory,useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
 import { Popover } from 'react-tiny-popover';
 import { logout } from "../redux/actions/index.js";
-
+import CustomToast from "../utils/customToast";
+import { toastType } from "../../constants";
 
 const Navbar=()=>{
     const store=useSelector(store=>store.authReducer);
@@ -14,6 +15,11 @@ const Navbar=()=>{
     const pathName=location.pathname;
 
     const [isPopoverOpen,setIsPopoverOpen]=React.useState(false);
+    const [info,setInfo]=React.useState({
+        show:0,
+        message:"",
+        type:toastType.info
+    })
 
     const [navList,setNavList]=React.useState([
         {
@@ -59,8 +65,8 @@ const Navbar=()=>{
             id:2,
             title:"LOGIN",
             path:"/login",
-            visible:pathName==='/' || pathName==='/home' || pathName==='/register'?true:false,
-            class:pathName==='/' || pathName==='/home'?"action-btn":"action-btn-border",
+            visible:pathName==='/login'?false:true,
+            class:pathName==='/register'?"action-btn-border":"action-btn",
         },
         {
             id:3,
@@ -72,8 +78,8 @@ const Navbar=()=>{
             id:4,
             title:"REGISTER",
             path:"/register",
-            visible:pathName==='/' || pathName==='/home' || pathName==='/login'?true:false,
-            class:pathName==='/' || pathName==='/home'?"action-btn-bg":"action-btn-border"
+            visible:pathName==='/register'?false:true,
+            class:pathName==='/login'?"action-btn-border":"action-btn-bg"
         }
     ]
 
@@ -94,6 +100,13 @@ const Navbar=()=>{
 
     const handleLogout=()=>{
         dispatch(logout({user:{}}))
+        setIsPopoverOpen(!isPopoverOpen)
+        setInfo({
+            ...info,
+            show:1,
+            message:"Logged out.",
+            type:toastType.info,               
+        })
         history.push("/login")
     }
 
@@ -101,10 +114,10 @@ const Navbar=()=>{
         return(
             <div className="profile-popover-main">
                 <div className="pp-button-div-1">
-                    <a href="#">User Management</a>
+                    <a href="/usermanagement">User Management</a>
                 </div>
                 <div className="pp-button-div-2">
-                    <a href="#" onClick={handleLogout}>Logout</a>
+                    <a href="/logout" onClick={handleLogout}>Logout</a>
                 </div>
             </div>
         )
@@ -112,6 +125,7 @@ const Navbar=()=>{
     
     return (
         <>
+            <CustomToast info={info}/>
             <nav className="main-nav">
                 <div className="logo">
                         <div>
@@ -171,10 +185,7 @@ const Navbar=()=>{
                             positions={['top', 'bottom', 'left', 'right']} // preferred positions by priority
                             content={< UserPopoverUI/>}
                             >
-                                <div className="profile-div" onClick={() => {
-                                    console.log("Popoverjjikn")
-                                    setIsPopoverOpen(!isPopoverOpen);
-                                }}>
+                                <div className="profile-div" onClick={() => setIsPopoverOpen(!isPopoverOpen)}>
                                     <img src={store?.user?.profile_pic_url || require('../../assets/images/profile_avtar.jpg')} alt=""/>
                                 </div>
                             </Popover>

@@ -1,14 +1,14 @@
 import * as React from "react";
 
 
-const ErrorPage=()=>{
+const UserManagement=()=>{
     return (
         <div className="home-bg flex-row-center-center">
-            <div className="errro-page">
-                <h1>404! Page not found</h1>
+            <div>
+                <h1>Welcome to User Management</h1>
             </div>
         </div>
     )
 }
 
-export default ErrorPage;
+export default UserManagement;

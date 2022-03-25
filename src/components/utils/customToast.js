@@ -1,7 +1,6 @@
 import React from 'react';
 
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import {toast } from 'react-toastify';
 import { toastType } from '../../constants';
 
 const CustomToast=(props)=>{
@@ -14,7 +13,9 @@ const CustomToast=(props)=>{
               break;
 
             case toastType.success:
-              toast.success(props.info.message);
+              toast.success(props.info.message,{
+                position: "top-right",
+              });
               break;
 
             case toastType.warning:
@@ -22,7 +23,9 @@ const CustomToast=(props)=>{
               break;
 
             case toastType.error:
-              toast.error(props.info.message);
+              toast.error(props.info.message,{
+                position: "bottom-right",
+              });
               break;
 
             default:
@@ -32,9 +35,7 @@ const CustomToast=(props)=>{
   },[props.info])
 
   return (
-    <div>
-      <ToastContainer/>
-    </div>
+    <></>
   );
 }
 
