@@ -50,7 +50,7 @@ const Pricing=()=>{
     ]
 
     const handleSubscriptionButtonClick=(type)=>{//type: 1=> Monthly, 2=> Yearly
-        history.push('/pricing-summary');
+        history.push(`/subscription-summary`);
     }
 
     return (

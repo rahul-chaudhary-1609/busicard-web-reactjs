@@ -16,6 +16,7 @@ const TermsAndConditions=React.lazy(()=>import('../termsAndConditions/termsAndCo
 const PrivacyPolicy=React.lazy(()=>import('../privacyPolicy/privacyPolicy.js'))
 const Pricing=React.lazy(()=>import('../pricing/pricing.js'))
 const SubscriptionSummary=React.lazy(()=>import('../pricing/subscriptionSummary.js'))
+const SubscriptionPayment=React.lazy(()=>import('../pricing/payment.js'))
 const UserManagemnt=React.lazy(()=>import('../userManagement/userManagement.js'))
 const Logout=React.lazy(()=>import('../logout/logout.js'))
 const UnderDevelopment=React.lazy(()=>import('../underDevelopment.js'))
@@ -33,7 +34,8 @@ const Routes=()=>{
             <ProtectedRoutes path="/category" component={UnderDevelopment}/>
             <ProtectedRoutes path="/contact-us" component={UnderDevelopment}/>
             <ProtectedRoutes path="/pricing" component={Pricing}/>
-            <ProtectedRoutes path="/pricing-summary" component={SubscriptionSummary}/>
+            <ProtectedRoutes path="/subscription-summary" component={SubscriptionSummary}/>
+            <ProtectedRoutes path="/subscription-payment" component={SubscriptionPayment}/>
             <ProtectedRoutes path="/sales" component={Sales}/>
             <ProtectedRoutes path="/small-business" component={SmallBusiness}/>
             <ProtectedRoutes path="/recruiting" component={Recruiting}/>

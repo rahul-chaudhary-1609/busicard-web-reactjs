@@ -1388,3 +1388,125 @@
 }
 
 /***********************************************error page styles end***********************************************/
+
+/***********************************************subscription summary styles start***********************************************/
+
+.ss-main,
+.ss-details-div,
+.pt-ui-div,
+.ss-horizontal-line,
+.ss-right-space,
+.ss-details-heading,
+.ss-details-content-div,
+.ss-details-content-card{
+    border: 1px solid var(--theme-color-4);
+}
+
+.ss-main{
+    min-height: 100vh;
+    width: 100%;
+    display: grid;
+    grid-template-rows: 25vh 75vh;
+    grid-template-columns:1fr 4fr 1fr
+}
+
+.ss-main .pt-ui-div{
+    grid-row: 1/2;
+    grid-column: 2/3;
+}
+
+.ss-main .ss-horizontal-line{
+    grid-row: 2/3;
+    grid-column: 1/2;
+}
+
+.ss-horizontal-line hr{
+    height:2px;
+    border-width:0;
+    color:var(--theme-color-4);
+    background-color:var(--theme-color-4);
+    width: 90%;
+}
+
+.ss-main .ss-details-div{
+    grid-row: 2/3;
+    grid-column: 2/3;
+    display: grid;
+    grid-template-rows: 50px 475px;
+    grid-template-columns: 1fr;
+}
+
+.ss-details-div .ss-details-heading{
+    padding-top: 5px;
+    grid-row: 1/2;
+    columns: 1/-1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.ss-details-div .ss-details-heading h5{
+    letter-spacing: 2px;
+}
+
+.ss-details-div .ss-details-heading p{
+    font-size: 13px;
+}
+
+.ss-details-div .ss-details-content-div{
+    padding-top: 5px;
+    grid-row: 2/3;
+    columns: 1/-1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ss-details-div .ss-details-content-div .ss-details-content-card{
+    width: 55%;
+    min-height: 400px;
+    background-color: var(--theme-color-5);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.ss-details-div .ss-details-content-div .ss-details-content-card .container .card{
+    background-color: transparent;
+    border: none;
+}
+
+.ss-details-div .ss-details-content-div .ss-details-content-card .container .card .text{
+    font-size: 13px;
+}
+
+.ss-main .ss-right-space{
+    grid-row: 2/3;
+    grid-column: 3/4;
+}
+
+.ss-details-button .action-btn-bg{
+    width: 200px;
+}
+/***********************************************subscription summary styles end***********************************************/
+
+
+/***********************************************path track ui styles start***********************************************/
+
+.pt-ui-main {
+    padding-top: 15px;
+    color: var(--theme-color-4);
+    font-size: 13px;
+}
+
+.pt-ui-main span{
+    padding: 2px 4px;
+}
+
+.pt-ui-main span img{
+    height: 10px;
+    width: 6px;
+}
+/***********************************************path track ui styles end***********************************************/
