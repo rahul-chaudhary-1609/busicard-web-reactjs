@@ -1,9 +1,18 @@
 import * as React from "react";
 import { useHistory } from "react-router-dom";
+import { useSelector, useDispatch} from "react-redux";
+import { toastType } from "../../constants";
+import CustomToast from "../utils/customToast";
+import { selectSubscription } from "../redux/actions";
 
 
 const Pricing=()=>{
+    const store=useSelector(store=>store.authReducer);
     const history=useHistory();
+
+    const dispatch=useDispatch();
+
+    let [userCount,setUserCount]=React.useState(`${store.user.number_of_users}`);
 
     let subscriptionPlan=[
         {
@@ -49,12 +58,62 @@ const Pricing=()=>{
         
     ]
 
+    const [info,setInfo]=React.useState({
+        show:0,
+        message:"",
+        type:toastType.info
+    })
+
+    const handleInputChnage=(e)=>{
+        if(!isNaN(e.target.value)){
+            setUserCount(e.target.value)
+        }
+    }
+
     const handleSubscriptionButtonClick=(type)=>{//type: 1=> Monthly, 2=> Yearly
-        history.push(`/subscription-summary`);
+        if(!store.isAuth){
+            setInfo({
+                show:1,
+                message:"Please login!",
+                type:toastType.info
+            })
+        }else if(!store.user?.status){
+            setInfo({
+                show:1,
+                message:"Your account is not approved yet!",
+                type:toastType.info
+            })
+        }else if(store.user?.subscription_plan==2){
+            setInfo({
+                show:1,
+                message:"You already have an active subscription!",
+                type:toastType.info
+            })
+        }else{
+            if(userCount.trim()==="" || parseInt(userCount)<1){
+                setInfo({
+                    show:1,
+                    message:"Number of user should be atleast 1",
+                    type:toastType.error
+                })
+
+                return;
+            }
+            const payload={
+                type,
+                amount:type===1?"5":"50",
+                number_of_users:parseInt(userCount),
+                amount_to_be_paid:(parseInt(userCount)*(type===1?5:50)).toString(),
+            }
+            dispatch(selectSubscription(payload))
+            history.push(`/subscription-summary`);
+        }
+        
     }
 
     return (
         <div id="pricing-main-div" className="home-bg">
+        <CustomToast info={info}/>
             <div className="sp-main">
                 <div className="sp-head-div">
                     <div className="sp-heading">
@@ -97,6 +156,10 @@ const Pricing=()=>{
                                     )
                                 })
                             }
+                        </div>
+                        <div className="user_count_div">
+                            <label>Number of User</label>
+                            <input value={userCount} type="text" onChange={handleInputChnage}/>
                         </div>
                         <div className="sp-card-2-button-div">
                             <div onClick={()=>handleSubscriptionButtonClick(1)}>

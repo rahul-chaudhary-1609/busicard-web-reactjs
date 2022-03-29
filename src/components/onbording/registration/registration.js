@@ -7,7 +7,7 @@ import CustomToast from "../../utils/customToast";
 import { login } from "../../redux/actions";
 import Pricing from "../../pricing/pricing.js"
 import CustomErrorHandler from "../../utils/customErrorHandler";
-
+import VerifyOTP from "./verifyOTP";
 
 
 const Registraion=()=>{
@@ -34,6 +34,8 @@ const Registraion=()=>{
         message:"",
         type:toastType.info
     })
+
+    const [showVerifyOTP,setShowVerifyOTP]=React.useState(false);
 
     React.useEffect(()=>{
         let pricingElement=document.getElementById("pricing-main-div");
@@ -91,7 +93,6 @@ const Registraion=()=>{
             setLoading(false);
             return;
         }
-        console.log("user",user)
         let data={
             endPoint:apiConstants.signUp,
             body:{
@@ -104,29 +105,37 @@ const Registraion=()=>{
             }
         }
 
-        console.log("data",data)
 
         apiPostRequest(store.user.token,data)
         .then((response)=>{
-            console.log("Response",response)
             setLoading(false);
 
-            let payload={
-                user:{
-                    ...response.body.data
+            if(response.body?.data?.is_email_verified){
+                let payload={
+                    user:{
+                        ...response.body.data
+                    }
                 }
+    
+                dispatch(login(payload))
+    
+                setInfo({
+                    ...info,
+                    show:1,
+                    message:response.message,
+                    type:toastType.success,               
+                })
+    
+                history.push("/home")
+            }else{
+                setInfo({
+                    ...info,
+                    show:1,
+                    message:`Email verification code sent on ${user.email}`,
+                    type:toastType.success,               
+                })
+                setShowVerifyOTP(true);
             }
-
-            dispatch(login(payload))
-
-            setInfo({
-                ...info,
-                show:1,
-                message:response.message,
-                type:toastType.success,               
-            })
-
-            history.push("/home")
         })
         .catch((error)=>{
             console.error("Error==>",error)
@@ -146,7 +155,7 @@ const Registraion=()=>{
                             <img src={require('../../../assets/images/onboarding_img.png')} alt=""/>
                         </div>
                 </div>
-                <div className="register-form-div mt-80">
+                {!showVerifyOTP?<div className="register-form-div mt-80">
                         <div>
                             <h2>Hey there!</h2>
                             <p>Let's get started by creating your account</p>
@@ -206,7 +215,7 @@ const Registraion=()=>{
                                 </div>
                             </form>
                         </div>
-                </div>
+                </div>:<VerifyOTP email={user.email}/>}
             </div>
         </div>
         <Pricing/> 

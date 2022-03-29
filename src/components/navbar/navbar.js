@@ -104,16 +104,36 @@ const Navbar=()=>{
             message:"Logged out.",
             type:toastType.info,               
         })
+        history.push("/logout")
+    }
+
+    const handleUserManagementClick=()=>{
+        setIsPopoverOpen(!isPopoverOpen)
+        if(!store.user?.status){
+            setInfo({
+                show:1,
+                message:"Your account is not approved yet!",
+                type:toastType.info
+            })
+        }else if(store.user?.subscription_plan==1){
+            setInfo({
+                show:1,
+                message:"You have to subscribe to access this module!",
+                type:toastType.info
+            })
+        }else{
+            history.push(`/user-management`);
+        }
     }
 
     const UserPopoverUI=()=>{
         return(
             <div className="profile-popover-main">
                 <div className="pp-button-div-1">
-                    <a href="/usermanagement">User Management</a>
+                    <a href="#" onClick={handleUserManagementClick}>User Management</a>
                 </div>
                 <div className="pp-button-div-2">
-                    <a href="/logout" onClick={handleLogout}>Logout</a>
+                    <a href="#" onClick={handleLogout}>Logout</a>
                 </div>
             </div>
         )

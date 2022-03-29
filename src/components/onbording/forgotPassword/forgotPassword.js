@@ -37,7 +37,6 @@ const ForgotPasswrod=()=>{
     const handleSend=(e)=>{
         e.preventDefault();
         setLoading(true);
-        console.log("user",user)
         let data={
             endPoint:apiConstants.forgotPassword,
             body:{
@@ -45,11 +44,9 @@ const ForgotPasswrod=()=>{
             }
         }
 
-        console.log("data",data)
         
         apiPostRequest(store.user.token,data)
         .then((response)=>{
-            console.log("Response",response)
             setLoading(false);
 
             setInfo({

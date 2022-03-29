@@ -39,7 +39,6 @@ const Login=()=>{
     const handleLogin=(e)=>{
         e.preventDefault();
         setLoading(true);
-        console.log("user",user)
         let data={
             endPoint:apiConstants.signIn,
             body:{
@@ -48,11 +47,9 @@ const Login=()=>{
             }
         }
 
-        console.log("data",data)
         
         apiPostRequest(store.user.token,data)
         .then((response)=>{
-            console.log("Response",response)
             setLoading(false);
             let payload={
                 user:{

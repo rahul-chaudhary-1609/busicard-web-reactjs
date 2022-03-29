@@ -42,7 +42,6 @@ const ResetPasswrod=()=>{
     const handleLogin=(e)=>{
         e.preventDefault();
         setLoading(true);
-        console.log("user",user)
         let data={
             endPoint:apiConstants.resetPassword,
             body:{
@@ -51,11 +50,9 @@ const ResetPasswrod=()=>{
             }
         }
 
-        console.log("data",data)
         
         apiPostRequest(params.token,data)
         .then((response)=>{
-            console.log("Response",response)
             setLoading(false);
 
             setInfo({
