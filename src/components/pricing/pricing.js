@@ -157,10 +157,10 @@ const Pricing=()=>{
                                 })
                             }
                         </div>
-                        <div className="user_count_div">
+                        {store.isAuth?<div className="user_count_div">
                             <label>Number of User</label>
                             <input value={userCount} type="text" onChange={handleInputChnage}/>
-                        </div>
+                        </div>:null}
                         <div className="sp-card-2-button-div">
                             <div onClick={()=>handleSubscriptionButtonClick(1)}>
                                 <span>MONTHLY SUBSCRIPTION</span>
