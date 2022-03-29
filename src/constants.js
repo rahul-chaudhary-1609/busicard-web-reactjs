@@ -29,6 +29,7 @@ export const apiConstants={
     resetPassword:'/client/setNewPassword',
     payment:'/client/payment',
     paymentSuccess:'/client/paymentSuccess',
+    getEmployee:'/client/getEmployee',
 }
 
 

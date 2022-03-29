@@ -138,7 +138,6 @@ const Registraion=()=>{
             }
         })
         .catch((error)=>{
-            console.error("Error==>",error)
             setLoading(false);
             CustomErrorHandler(error,history);
         })

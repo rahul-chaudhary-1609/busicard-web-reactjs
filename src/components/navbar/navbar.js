@@ -98,6 +98,11 @@ const Navbar=()=>{
 
     const handleLogout=()=>{
         setIsPopoverOpen(!isPopoverOpen)
+        
+        let currentNav=[...navList];
+        currentNav.forEach(nav=>nav.active=false);
+        setNavList(currentNav);
+
         setInfo({
             ...info,
             show:1,
@@ -109,6 +114,11 @@ const Navbar=()=>{
 
     const handleUserManagementClick=()=>{
         setIsPopoverOpen(!isPopoverOpen)
+
+        let currentNav=[...navList];
+        currentNav.forEach(nav=>nav.active=false);
+        setNavList(currentNav);
+
         if(!store.user?.status){
             setInfo({
                 show:1,

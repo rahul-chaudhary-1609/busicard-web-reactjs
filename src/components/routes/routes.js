@@ -18,7 +18,7 @@ const PrivacyPolicy=React.lazy(()=>import('../privacyPolicy/privacyPolicy.js'))
 const Pricing=React.lazy(()=>import('../pricing/pricing.js'))
 const SubscriptionSummary=React.lazy(()=>import('../pricing/subscriptionSummary.js'))
 const SubscriptionPayment=React.lazy(()=>import('../pricing/payment.js'))
-const UserManagemnt=React.lazy(()=>import('../userManagement/userManagement.js'))
+const UserManagement=React.lazy(()=>import('../userManagement/userManagement.js'))
 const Logout=React.lazy(()=>import('../onbording/logout/logout.js'))
 const UnderDevelopment=React.lazy(()=>import('../underDevelopment.js'))
 
@@ -43,7 +43,7 @@ const Routes=()=>{
             <ProtectedRoutes path="/recruiting" component={Recruiting}/>
             <ProtectedRoutes path="/tnc" component={TermsAndConditions}/>
             <ProtectedRoutes path="/privacy-policy" component={PrivacyPolicy}/>
-            <ProtectedRoutes path="/user-management" component={UnderDevelopment}/>
+            <ProtectedRoutes path="/user-management" component={UserManagement}/>
             <ProtectedRoutes path="/logout" component={Logout}/>
             <Route component={ErrorPage}/>
         </Switch>
