@@ -3,9 +3,10 @@ import { useHistory } from "react-router-dom";
 import PathTrackUI from "../utils/pathTrackUI";
 import { useSelector} from "react-redux";
 import { apiGetWithQueryRequest } from "../../api";
-import { apiConstants } from "../../constants";
+import { apiConstants, toastType } from "../../constants";
 import CustomErrorHandler from "../utils/customErrorHandler";
-
+import {ActionModal, DeleteModal, UploadPictureModal} from "./actionModal";
+import CustomToast from "../utils/customToast";
 
 
 const UserManagement=()=>{
@@ -20,7 +21,17 @@ const UserManagement=()=>{
 
     let [search,setSearch]=React.useState("");
     let [employeeList, setEmployeeList]=React.useState([]);
+    let [openActionModal, setOpenActionModal]=React.useState(false);
+    let [openDeleteModal, setOpenDeleteModal]=React.useState(false);
+    let [openUploadModal, setOpenUploadModal]=React.useState(false);
+    
+    const [info,setInfo]=React.useState({
+        show:0,
+        message:"",
+        type:toastType.info
+    })
 
+    let [selectedEmployee,setSelectedEmployee]=React.useState(null);
 
     React.useEffect(()=>{
         let nav=document.getElementById("main-nav-id");
@@ -30,7 +41,7 @@ const UserManagement=()=>{
         }
     })
 
-    React.useEffect(()=>{
+    const getEmployeeList=()=>{
         let data={
             endPoint:apiConstants.getEmployee,
             query:{
@@ -50,10 +61,41 @@ const UserManagement=()=>{
         .catch((error)=>{
             CustomErrorHandler(error,history);
         })
+    }
+
+    React.useEffect(()=>{
+        getEmployeeList();
     },[search])
+
+    const handleActionModal=()=>{
+        setOpenActionModal(!openActionModal)
+    }
+
+    const handleAddEditEmployee=(employee=null)=>{
+        setSelectedEmployee(employee)
+        handleActionModal();
+    }
+
+    const handleDeleteModal=()=>{
+        setOpenDeleteModal(!openDeleteModal)
+    }
+
+    const handleDeleteEmployee=(employee)=>{
+        setSelectedEmployee(employee)
+        handleDeleteModal();
+    }
+
+    const handleUploadModal=()=>{
+        setOpenUploadModal(!openUploadModal)
+    }
+
+    const handleUploadPicture=()=>{
+        handleUploadModal();
+    }
 
     return (<>
             <div className="um-main">
+            <CustomToast info={info}/>
                 <div className="pt-ui-div">
                     <PathTrackUI paths={paths}/>
                 </div>
@@ -63,7 +105,7 @@ const UserManagement=()=>{
                             <div className="profile-picture">
                                 <img src={store?.user?.profile_pic_url || require('../../assets/images/profile_avtar.jpg')} alt=""/>
                             </div>
-                            <div className="chnage-profile-picture">
+                            <div className="chnage-profile-picture" onClick={handleUploadPicture}>
                                 <img src={require('../../assets/images/edit_icon_white.png')} alt=""/>
                             </div>
                         </div>
@@ -114,7 +156,7 @@ const UserManagement=()=>{
                             </span>
                             <input id="search" value={search} onChange={(e)=>setSearch(e.target.value)} type="text" className="form-control border-left-0 custom-input-1" placeholder="Name" autoComplete="nope" required/>
                         </div>
-                        <button className="action-btn-bg ml-10">
+                        <button className="action-btn-bg ml-10" onClick={()=>handleAddEditEmployee(null)}>
                             <i className="icon"><img className="form-input-icon" src={require("../../assets/images/add_more_icon.png")} alt=""/></i>
                             <span className="ml-2">ADD EMPLOYEE</span>
                         </button>
@@ -139,8 +181,8 @@ const UserManagement=()=>{
                                                 <td>{employee.email}</td>
                                                 <td className="um-table-action-cell">
                                                     <div>
-                                                        <img src={require('../../assets/images/delete_icon.png')} alt=""/>
-                                                        <img src={require('../../assets/images/edit_icon_black.png')} alt=""/>
+                                                        <img onClick={()=>handleDeleteEmployee(employee)} src={require('../../assets/images/delete_icon.png')} alt=""/>
+                                                        <img onClick={()=>handleAddEditEmployee(employee)} src={require('../../assets/images/edit_icon_black.png')} alt=""/>
                                                     </div>
                                                 </td>
                                              </tr>
@@ -153,6 +195,37 @@ const UserManagement=()=>{
                 </div>
                 <div className="um-right-space"></div>
             </div>
+            {
+                openActionModal?<ActionModal 
+                        {...{
+                            openActionModal,
+                            setOpenActionModal,
+                            getEmployeeList,
+                            setInfo,
+                            selectedEmployee
+                        }}
+                />:null
+            }
+            {
+                openDeleteModal?<DeleteModal 
+                        {...{
+                            openDeleteModal,
+                            setOpenDeleteModal,
+                            getEmployeeList,
+                            setInfo,
+                            selectedEmployee
+                        }}
+                />:null
+            }
+            {
+                openUploadModal?<UploadPictureModal 
+                        {...{
+                            openUploadModal,
+                            setOpenUploadModal,
+                            setInfo,
+                        }}
+                />:null
+            }
     </>
     )
 }

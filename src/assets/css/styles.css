@@ -241,12 +241,15 @@
 .profile-div{
     width: 15%;
     height: 15%;
+    background-color: var(--theme-color-1);
+    border-radius:100px;
 }
 
 .profile-div img{
     height: 100%;
     width: 100%;
     border-radius:100px;
+    background-color: var(--theme-color-1);
 }
 
 .profile-popover-main{
@@ -1700,6 +1703,7 @@
     justify-content: center;
     align-items: center;
     border-radius: 5px;
+    cursor: pointer;
 }
 
 .um-profile-div .profile-details-div .profile-picture-div .chnage-profile-picture img{
@@ -1817,6 +1821,7 @@
 .um-table-action-cell div img{
     width: 20px;
     height: 20px;
+    cursor: pointer;
 }
 
 .um-main .um-right-space{
@@ -1825,3 +1830,59 @@
 }
 
 /***********************************************user management styles end***********************************************/
+
+
+/***********************************************modal styles start***********************************************/
+
+.action-modal-main{
+    width: 100%;
+    border-radius: 25px;
+    padding: 25px;
+}
+
+.action-modal-main h6{
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.action-modal-main form{
+    margin-top: 10px;
+}
+
+.modal-action-btn-border{
+    color: var(--theme-color-4);
+    border: 1px solid var(--theme-color-4);
+    padding: 5px 25px;
+    border-radius: 5px;
+    background: transparent;
+    width: 125px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.modal-upload-picture-div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.modal-upload-picture-img{
+    width: 150px;
+    height: 150px;
+    border-radius: 75px;
+}
+
+.modal-upload-picture-div input{
+   visibility: hidden;
+}
+
+.modal-upload-picture-div label{
+    padding: 10px;
+    width: 100px;
+    background-color: var(--theme-color-3);
+    color: var(--theme-color-1);
+    margin-left: 40px;
+    border-radius: 5px;
+ }
+/***********************************************modal styles end***********************************************/

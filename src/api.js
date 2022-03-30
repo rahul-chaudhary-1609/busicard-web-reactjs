@@ -98,6 +98,30 @@ export const apiGetWithParamsRequest = (token, data) => {
 	});
 };
 
+export const apiDeleteWithParamsRequest = (token, data) => {
+	return new Promise(async (resolve, reject) => {
+		try {
+			let url=new URL(`${baseURL}${data.endPoint}`);
+			Object.keys(data.params).forEach(key=>url.pathname=`${url.pathname}/${data.params[key]}`)
+			const response = await fetch(url, {
+				headers: {
+					Authorization: token,
+					'Content-Type': 'application/json',
+				},
+				method: 'DELETE',
+			}).then((res) => res.json());
+
+			if (response.status == 200) {
+				resolve(response);
+			} else {
+				reject(response);
+			}
+		} catch (error) {
+			console.log(error);
+		}
+	});
+};
+
 export const apiDeleteRequest = (token, data) => {
 	return new Promise(async (resolve, reject) => {
 		try {
@@ -132,7 +156,7 @@ export const apiUploadFileRequest = (token, data) => {
 				headers: {
 					Authorization: token,
 				},
-				method: 'PUT',
+				method: 'POST',
 			}).then((res) => res.json());
 
 			if (response.status == 200) {

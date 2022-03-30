@@ -30,6 +30,10 @@ export const apiConstants={
     payment:'/client/payment',
     paymentSuccess:'/client/paymentSuccess',
     getEmployee:'/client/getEmployee',
+    addEmployee:'/client/addEmployee',
+    editEmployee:'/client/editEmployee',
+    deleteEmployee:'/client/deleteEmployee',
+    updateProfile:'/client/updateProfile',
 }
 
 
